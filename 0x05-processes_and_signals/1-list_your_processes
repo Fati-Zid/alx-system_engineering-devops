@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script is to show all processes runing with details.
+
+ps aux --forest
+
