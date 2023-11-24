@@ -19,31 +19,6 @@ After playing around with these scripts, you'll be able to:
    ```bash
    git clone https://github.com/Fati-Zid/alx-system_engineering-devops.git
    cd alx-system_engineering-devops/0x05-processes_and_signals
-Certainly! Here's the content formatted in Markdown for easy copying and pasting into the GitHub edit mode:
-
-```markdown
-# Processes and Signals
-
-Hey there! 👋 This repo is all about understanding Linux processes and signals. We've got some cool Bash scripts that help you dive into the world of PIDs, processes, and signals.
-
-## Learning Objectives
-
-After playing around with these scripts, you'll be able to:
-
-- Get what a PID (Process ID) is all about.
-- Understand what a process is in Linux.
-- Find a process' PID like a pro.
-- Master the art of killing processes.
-- Decode the secret language of signals.
-- Identify the two signals that just can't be ignored.
-
-## Quick Setup
-
-1. **Clone this repo:**
-   ```bash
-   git clone https://github.com/Fati-Zid/alx-system_engineering-devops.git
-   cd alx-system_engineering-devops/0x05-processes_and_signals
-   ```
 
 2. **Check out the scripts in action!**
    - Just make sure to run `chmod +x` on the scripts before diving in.
