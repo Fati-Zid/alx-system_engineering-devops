@@ -1,19 +1,4 @@
 #!/usr/bin/env bash
-
-# This script starts the "4-to_infinity_and_beyond" Bash script and then stops it using the kill command
-
-# Start the 4-to_infinity_and_beyond script in the background
-./4-to_infinity_and_beyond &
-
-# Capture the PID of the background process
-PID=$!
-
-# Wait for a moment
-sleep 5
-
-# Use kill to stop the process
-kill $PID
-
-# Display a message indicating termination
-echo "Terminated"
+# This script kills a process using command kill
+kill "$(ps -x | pgrep -f beyond)"
 
