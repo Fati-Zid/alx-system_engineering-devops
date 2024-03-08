@@ -1,23 +1,42 @@
 #!/usr/bin/env bash
 
-# Check if Nginx is listening on port 80
-curl -sSf 0:80 >/dev/null
-if [ $? -eq 0 ]; then
-    echo "Nginx is already listening on port 80."
+# Function to check if Nginx is listening on port 80
+check_nginx_port() {
+    local response
+    response=$(curl -sSf 0:80)
+    if [ $? -eq 0 ]; then
+        echo "Nginx is already listening on port 80."
+        exit 0
+    else
+        return 1
+    fi
+}
+
+# Function to modify Nginx configuration
+modify_nginx_config() {
+    if ! grep -q 'listen\s*80' /etc/nginx/sites-available/default; then
+        sed -i 's/listen\s*80;/listen 80;/g' /etc/nginx/sites-available/default
+    fi
+}
+
+# Function to restart Nginx
+restart_nginx() {
+    service nginx restart
+}
+
+# Check if Nginx is already listening on port 80
+if check_nginx_port; then
     exit 0
 fi
 
-# Check if Nginx configuration needs to be modified
-if ! grep -q 'listen\s*80' /etc/nginx/sites-available/default; then
-    sed -i 's/listen\s*80;/listen 80;/g' /etc/nginx/sites-available/default
-fi
+# Modify Nginx configuration
+modify_nginx_config
 
-# Restart Nginx to apply changes
-service nginx restart
+# Restart Nginx
+restart_nginx
 
 # Verify if Nginx is now listening on port 80
-curl -sSf 0:80 >/dev/null
-if [ $? -eq 0 ]; then
+if check_nginx_port; then
     echo "Nginx is now listening on port 80."
 else
     echo "Failed to configure Nginx to listen on port 80."
