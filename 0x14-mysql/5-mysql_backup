@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# bash script that create mysql backup.
+
+# Get current date for the archive name
+current_date=$(date +"%d-%m-%Y")
+
+# MySQL dump command
+mysqldump -u root -p"$1" --all-databases > backup.sql
+
+# Check if mysqldump command was successful
+if [ $? -ne 0 ]; then
+  echo "Error: MySQL dump failed. Check the provided password and MySQL access."
+  exit 1
+fi
+
+# Compress the dump into a tar.gz archive
+tar -czvf "$current_date.tar.gz" backup.sql
+
+# Clean up the temporary dump file
+rm backup.sql
+
+echo "Backup completed: $current_date.tar.gz"
