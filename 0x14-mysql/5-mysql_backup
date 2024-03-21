@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
-
 # bash script that create mysql backup.
-
-# MySQL dump command
 mysqldump -u root -p"$1" --all-databases > backup.sql
-
-# Compress the dump into a tar.gz archive
 tar -czvf "$(date '+%d-%m-%Y').tar.gz" backup.sql
